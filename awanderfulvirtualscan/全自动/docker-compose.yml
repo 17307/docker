@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  awanderfulvirtualscan:
+    image: registry.cn-hangzhou.aliyuncs.com/o1hy/tools:awanderfulvirtualscan
+    ports:
+      - "3443:13443"
