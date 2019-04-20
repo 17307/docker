@@ -42,9 +42,8 @@ RUN /home/acunetix/.acunetix_trial/v_190325161/database/bin/pg_ctl -D /home/acun
 USER root
 ```
 
-需要自行进入容器后，先通过**acunetix** 用户执行执行 `/bin/bash /home/acunetix/.acunetix_trial/start.sh` 然后通过root用户`/home/acunetix/.acunetix_trial/v_190325161/scanner/patch_awvs` 
-
-账号密码同上。
+需要自行进入容器后，先通过**root** 用户执行安装，再通过**acunetix** 用户执行执行 `/bin/bash /home/acunetix/.acunetix_trial/start.sh` 然后通过root用户`/home/acunetix/.acunetix_trial/v_190325161/scanner/patch_awvs` 
+本来想传修改后的自动安装的脚本，但是太大了/dog
 
 ### 全手动
 
