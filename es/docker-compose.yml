@@ -1,0 +1,42 @@
+version: "3"
+services:
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.5.2
+    ports: 
+      - 9200:9200
+    networks:
+      - em
+    environment:
+      ELASTIC_PASSWORD: root
+  mysql:
+    image: mysql
+    ports: 
+      - 3306:3306
+    networks:
+      - em
+    volumes:
+      - ./m/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+  logstash:
+    image: docker.elastic.co/logstash/logstash-oss:6.5.2
+    networks:
+      - em
+    volumes:
+      - ./logstash/:/usr/share/logstash/bin/mysql/ 
+    user: root
+    working_dir: /usr/share/logstash/bin/
+    command: logstash -f mysql/logstash.conf --path.data /tmp/1
+  
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:6.5.2
+    environment:
+      ELASTICSEARCH_URL: http://es:9200
+    networks:
+      - em
+    ports:
+      - 5601:5601
+networks:
+  em:
+    driver: "bridge"
+
